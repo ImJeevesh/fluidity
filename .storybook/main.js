@@ -7,7 +7,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-actions",
-    "@storybook/preset-typescript"
+    "@storybook/preset-create-react-app"
   ],
   typescript: {
     check: false,
