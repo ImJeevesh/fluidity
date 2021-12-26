@@ -7,6 +7,7 @@ module.exports = {
     '@storybook/preset-scss',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
+    'storybook-dark-mode'
   ],
   framework: '@storybook/react',
   core: {
