@@ -1,0 +1,40 @@
+name: update docs/storybook
+on:
+  workflow_dispatch:
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout '${{ github.ref_name }}'
+      uses: actions/checkout@v2.4.0
+      with:
+        fetch-depth: '0'
+
+    - name: configure git
+      run: |
+        git --version
+        git config user.name "github-actions"
+        git config user.email "<>"
+
+    - name: prepare 'build-docs' branch
+      run: |
+        git checkout build-docs
+        git reset --hard ${{ github.ref_name }}
+    
+    - name: setup node environment
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+        cache: 'npm'
+
+    - name: build docs
+      run: |
+        npm install
+        npm run build-docs
+
+    - name: deploy docs
+      run: |
+        git add ./docs
+        git commit -m "chore(docs): update docs/storybook [auto]"
+        git push origin build-docs --force
