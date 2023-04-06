@@ -1,0 +1,60 @@
+.fluidity-virtual-table {
+  &__wrapper {
+    display: inline-block;
+
+    table {
+      border-style: none;
+
+      th {
+        background-color: #333;
+        color: #fcfcfc;
+      }
+
+      td {
+        color: #333;
+      }
+
+      th,
+      td {
+        text-align: center;
+        font-size: 0.6rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: sans-serif;
+        width: 6rem;
+      }
+    }
+  }
+
+  &__table--windowed {
+    overflow-y: scroll;
+    border-collapse: collapse;
+    display: block;
+    height: var(--vt-prop-table-height);
+
+    tbody {
+      position: relative;
+      display: inline-block;
+      height: var(--vt-prop-total-height);
+      max-height: var(--vt-prop-total-height);
+      width: 100%;
+    }
+
+    tr {
+      position: absolute;
+      left: 0;
+      height: var(--vt-prop-row-height);
+      line-height: var(--vt-prop-row-height);
+    }
+  }
+
+  &__row {
+    height: var(--vt-prop-row-height);
+    max-height: var(--vt-prop-row-height);
+    background-color: #fcfcfc;
+
+    &--odd {
+      background-color: #dadde1;
+    }
+  }
+}

@@ -4,7 +4,7 @@ export const getBEM = (blockName: string): { bem: ClassNameFormatter } => ({
   bem: withNaming({
     n: 'fluidity-',
     e: '__',
-    m: '_',
+    m: '--',
     v: '_',
   })(blockName),
 });
