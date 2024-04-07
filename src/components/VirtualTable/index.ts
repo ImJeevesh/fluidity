@@ -1,1 +1,1 @@
-export * from './VirtualTable';
+export { default, VirtualTableProps } from './VirtualTable';

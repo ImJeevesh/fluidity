@@ -22,16 +22,15 @@ jobs:
         git checkout build-docs
         git reset --hard ${{ github.ref_name }}
     
-    - name: setup node environment
-      uses: actions/setup-node@v2
+    - name: setup bun environment
+      uses: oven-sh/setup-bun@v1
       with:
-        node-version: '16'
-        cache: 'npm'
+        bun-version: latest
 
     - name: build docs
       run: |
-        npm install
-        npm run build-docs
+        bun install --frozen-lockfile
+        bun run build-docs
 
     - name: deploy docs
       run: |
