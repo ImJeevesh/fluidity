@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout '${{ github.ref_name }}'
-      uses: actions/checkout@v2.4.0
+      uses: actions/checkout@v4
       with:
-        fetch-depth: '0'
+        fetch-depth: 0
 
     - name: configure git
       run: |
