@@ -15,7 +15,9 @@ export interface ButtonProps<T extends ButtonType>
 const renderIcon = (icon?: IconType): JSX.Element | null => {
   const { bem } = getBEM('icon');
 
-  if (!icon) return null;
+  if (!icon) {
+    return null;
+  }
 
   return React.cloneElement(icon, {
     className: bem(null, [icon.props.className]),
