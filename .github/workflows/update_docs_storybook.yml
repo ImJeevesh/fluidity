@@ -29,11 +29,11 @@ jobs:
 
     - name: build docs
       run: |
-        bun install --frozen-lockfile
+        bun install
         bun run build-docs
 
     - name: deploy docs
       run: |
         git add ./docs
-        git commit -m "chore(docs): update docs/storybook [auto]"
+        git commit -m "chore(docs): update docs/storybook [auto]" --no-verify
         git push origin build-docs --force

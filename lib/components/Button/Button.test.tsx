@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
-import React from 'react';
-
+import { describe, test } from 'vitest';
 import Button from './Button';
 
 describe('Fulidity Button', () => {
