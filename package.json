@@ -14,7 +14,7 @@
     "test": "jest",
     "lint": "eslint --fix ./src",
     "sb": "storybook dev -p 6006",
-    "build-docs": "storybook build -o docs/storybook"
+    "build-docs": "storybook build -o docs"
   },
   "repository": {
     "type": "git",
