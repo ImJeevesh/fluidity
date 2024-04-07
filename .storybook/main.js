@@ -1,19 +1,24 @@
-module.exports = {
-  stories: [
-    '../src/**/*.stories.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)'
-  ],
+/**
+ * @type {import('@storybook/react-webpack5').StorybookConfig}
+ */
+const main = {
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/preset-scss',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    'storybook-dark-mode'
+    'storybook-dark-mode',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: 'webpack5'
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
   },
   typescript: {
-    reactDocgen: false
-  }
-}
+    reactDocgen: false,
+  },
+  docs: {
+    autodocs: true,
+  },
+};
+
+module.exports = main;

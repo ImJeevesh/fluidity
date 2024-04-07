@@ -4,6 +4,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:react/recommended',
     'prettier',
+    'plugin:storybook/recommended',
   ],
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   rules: {
@@ -18,10 +19,19 @@ module.exports = {
     indent: 'off',
     'no-invalid-this': 'off',
     'object-curly-spacing': 'off',
-    'react/prop-types': ['error', { skipUndeclared: true }],
+    'react/prop-types': [
+      'error',
+      {
+        skipUndeclared: true,
+      },
+    ],
   },
   parser: '@typescript-eslint/parser',
-  ignorePatterns: ['**/*.?(scss|css|svg)', '**/*.?(test|stories).ts*'],
+  ignorePatterns: [
+    '**/*.?(scss|css|svg)',
+    '**/*.?(test|stories).ts*',
+    'dist/**',
+  ],
   settings: {
     react: {
       version: 'detect',

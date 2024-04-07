@@ -1,40 +1,42 @@
-import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
-import postcss from 'rollup-plugin-postcss';
-import dts from 'rollup-plugin-dts';
+import glob from 'glob';
+import peerDeps from 'rollup-plugin-peer-deps-external';
+import scss from 'rollup-plugin-scss';
 
-const packageJson = require('./package.json');
+/**
+ * @type {import('rollup').RollupOptions}
+ */
+const options = {
+  input: [
+    'src/index.ts',
+    ...glob.sync('src/{components,utils}/**/!(*.!(stories|test)).{ts,tsx}'),
+  ],
+  output: {
+    dir: 'dist',
+    format: 'esm',
+    preserveModules: true,
+    preserveModulesRoot: 'src',
+    sourcemap: true,
+  },
+  plugins: [
+    peerDeps(),
+    resolve(),
+    commonjs(),
+    typescript({
+      tsconfig: './tsconfig.build.json',
+      declaration: true,
+      declarationDir: 'dist',
+    }),
+    scss({
+      sourceMap: true,
+      output: 'dist/bundle.min.css',
+      outputStyle: 'compressed',
+    }),
+    terser(),
+  ],
+};
 
-export default [
-  {
-    input: 'src/index.ts',
-    output: [
-      {
-        file: packageJson.main,
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: packageJson.module,
-        format: 'esm',
-        sourcemap: true,
-      },
-    ],
-    plugins: [
-      resolve(),
-      commonjs(),
-      typescript({
-        exclude: ['dist/**', '**/*.test.ts*', '**/*.stories.ts*'],
-        tsconfig: './tsconfig.json',
-      }),
-      postcss(),
-    ],
-  },
-  {
-    input: 'dist/esm/types/src/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts()],
-    external: [/\.(css|less|scss)$/],
-  },
-];
+export default options;
