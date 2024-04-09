@@ -1,5 +1,5 @@
 import React from 'react';
-import { getBEM } from '../../utils/bem.util';
+import { getBEM } from '../../utils';
 import './Button.scss';
 
 type IconType = React.ReactElement<React.HTMLProps<HTMLOrSVGElement>>;
